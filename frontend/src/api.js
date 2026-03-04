@@ -1,4 +1,4 @@
-const API = "http://127.0.0.1:8000";
+const API = "https://proyecto-ml-5zij.onrender.com";
 
 export async function predict(data) {
   const res = await fetch(`${API}/predict`, {
