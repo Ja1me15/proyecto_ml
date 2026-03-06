@@ -53,10 +53,9 @@ a{ color:inherit; }
   padding:20px;
 }
 
-/* NUEVO: contenedor centrado para TODO (topbar + grid) */
 .container{
   width:100%;
-  max-width:1320px; /* ajusta: 1200–1400 */
+  max-width:1320px;
   margin:0 auto;
 }
 
