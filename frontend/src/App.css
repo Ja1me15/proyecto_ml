@@ -167,7 +167,7 @@ a{ color:inherit; }
       rgba(47,124,246,0.04)
   );
   box-shadow: 0 14px 32px rgba(11,87,208,0.12);
-  padding: 16px;
+  padding: 20px;
 }
 
 .cardHeader{
@@ -200,11 +200,11 @@ a{ color:inherit; }
 
 /* ===== Sections inside form ===== */
 .section{
-  margin-top: 12px;
+  margin-top: 16px;
   border:1px solid var(--border);
   border-radius: 18px;
   background: rgba(15,23,42,0.02);
-  padding: 12px;
+  padding: 16px;
 }
 .sectionTop{
   display:flex;
