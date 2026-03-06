@@ -1,9 +1,6 @@
-/* =========================
-   ULTRA PRO - App.css (LIGHT BANK STYLE)
-   Paleta: Blanco + Gris suave + Azul (tipo BBVA)
-========================= */
 
-/* Theme tokens (forzamos estilo claro) */
+
+
 :root{
   --bg0:#F6F8FC;       /* fondo general */
   --bg1:#FFFFFF;       /* capa superior */
@@ -50,26 +47,29 @@ body{
 
 a{ color:inherit; }
 
+/* Page: ocupa 100% */
 .page{
   width:100%;
-  max-width:1400px;
-  margin:0 auto;
   padding:20px;
+}
+
+/* NUEVO: contenedor centrado para TODO (topbar + grid) */
+.container{
+  width:100%;
+  max-width:1320px; /* ajusta: 1200–1400 */
+  margin:0 auto;
 }
 
 /* ===== Top header ===== */
 .topbar{
   display:flex;
   justify-content:space-between;
-  max-width:1200px;
-  margin:0 auto 16px auto;
   text-align:center;
   align-items:center;
   gap:12px;
   padding: 18px 18px;
   border-radius: 20px;
 
-  /* NUEVO COLOR */
   border:1px solid rgba(11,87,208,0.20);
   background: linear-gradient(
       180deg,
@@ -78,6 +78,7 @@ a{ color:inherit; }
   );
 
   box-shadow: 0 14px 30px rgba(11,87,208,0.12);
+  margin-bottom: 16px;
 }
 
 .brand{
@@ -152,9 +153,9 @@ a{ color:inherit; }
 /* ===== Grid ===== */
 .grid{
   display:grid;
-  grid-template-columns: repeat(2, minmax(520px, 1fr));
+  grid-template-columns: 1fr 1fr; /* 2 columnas estables */
   gap:22px;
-  justify-content:center;
+  align-items:start;
 }
 
 /* Cards */
@@ -292,13 +293,6 @@ select{
 select option{
   background: #ffffff;
   color: #0f172a;
-}
-
-.row2{
-  margin-top: 10px;
-  display:grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
 }
 
 /* Primary CTA */
@@ -450,21 +444,12 @@ select option{
   background: rgba(15,23,42,0.015);
 }
 
-/* Ratios box */
-.pre{
-  margin:0;
-  padding: 12px;
-  border-radius: 16px;
-  border:1px solid var(--border);
-  background: rgba(15,23,42,0.02);
-  overflow:auto;
-  font-size: 12px;
-  color: var(--text);
+/* Responsive */
+@media (max-width: 1100px){
+  .grid{ grid-template-columns: 1fr; }
 }
 
-/* Responsive */
 @media (max-width: 980px){
-  .grid{ grid-template-columns: 1fr; }
   .kpiGrid{ grid-template-columns: 1fr; }
   .formGrid{ grid-template-columns: 1fr; }
   .wide{ grid-column: span 1; }

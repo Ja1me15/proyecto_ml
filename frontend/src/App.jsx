@@ -360,307 +360,305 @@ export default function App() {
 
   return (
     <div className="page">
-      {/* TOP */}
-      <div className="topbar">
-        <div className="brand">
-          <div className="brandIcon" aria-hidden>
-          SF
-          </div>
-          <div>
-            <h1>Sistema de Scoring Financiero</h1>
-            <p>React (Front) + FastAPI (API) · CatBoost + NGBoost + Ordinal</p>
-          </div>
-        </div>
-
-        <div className="actions">
-          <button className="pill" onClick={() => { setOut(null); setErr(""); setForm(SOLIDEZ_0); }}>
-            <span className="dot bad" /> Solidez 0
-          </button>
-          <button className="pill" onClick={() => { setOut(null); setErr(""); setForm(SOLIDEZ_1); }}>
-            <span className="dot bad" /> Solidez 1
-          </button>
-          <button className="pill" onClick={() => { setOut(null); setErr(""); setForm(SOLIDEZ_2); }}>
-            <span className="dot good" /> Solidez 2
-          </button>
-          <button className="pill" onClick={() => { setOut(null); setErr(""); setForm(SOLIDEZ_3); }}>
-            <span className="dot good" /> Solidez 3
-          </button>
-        </div>
-      </div>
-
-      <div className="grid">
-        {/* FORM */}
-        <div className="card">
-          <div className="cardHeader">
+      <div className="container">
+        {/* TOP */}
+        <div className="topbar">
+          <div className="brand">
+            <div className="brandIcon" aria-hidden>
+              SF
+            </div>
             <div>
-              <div className="cardTitle">Datos de entrada</div>
-              <div className="cardSub">
-                Selecciona contexto (categorías del dataset) y completa valores contables.
-              </div>
-            </div>
-            <div className="badgeMini">Validado por categorías</div>
-          </div>
-
-          <div className="section">
-            <div className="sectionTop">
-              <div className="sectionName">Contexto</div>
-              <div className="sectionHint">Categorías usadas en entrenamiento</div>
-            </div>
-
-            <div className="formGrid">
-              <div className="field">
-                <span>SUPERVISOR</span>
-                <select value={form.SUPERVISOR || ""} onChange={(e) => setField("SUPERVISOR", e.target.value)}>
-                  <option value="" disabled>Selecciona supervisor...</option>
-                  {OPTIONS.supervisores.map(v => <option key={v} value={v}>{v}</option>)}
-                </select>
-              </div>
-
-              <div className="field">
-                <span>REGIÓN</span>
-                <select value={form["REGIÓN"] || ""} onChange={(e) => setField("REGIÓN", e.target.value)}>
-                  <option value="" disabled>Selecciona región...</option>
-                  {OPTIONS.regiones.map(v => <option key={v} value={v}>{v}</option>)}
-                </select>
-              </div>
-
-              <div className="field">
-                <span>DEPARTAMENTO</span>
-                <select value={form["DEPARTAMENTO DOMICILIO"] || ""} onChange={(e) => setField("DEPARTAMENTO DOMICILIO", e.target.value)}>
-                  <option value="" disabled>Selecciona departamento...</option>
-                  {OPTIONS.departamentos.map(v => <option key={v} value={v}>{v}</option>)}
-                </select>
-              </div>
-
-              <div className="field">
-                <span>CIUDAD</span>
-                <select value={form["CIUDAD DOMICILIO"] || ""} onChange={(e) => setField("CIUDAD DOMICILIO", e.target.value)}>
-                  <option value="" disabled>Selecciona ciudad...</option>
-                  {(cities.length ? cities : [form["CIUDAD DOMICILIO"]]).filter(Boolean).map(v => (
-                    <option key={v} value={v}>{v}</option>
-                  ))}
-                </select>
-                <small>La lista cambia según el departamento.</small>
-              </div>
-
-              <div className="field">
-                <span>MACROSECTOR</span>
-                <select value={form.MACROSECTOR || ""} onChange={(e) => setField("MACROSECTOR", e.target.value)}>
-                  <option value="" disabled>Selecciona macrosector...</option>
-                  {OPTIONS.macrosector.map(v => <option key={v} value={v}>{v}</option>)}
-                </select>
-              </div>
-
-              <div className="field wide">
-                <span>CIIU</span>
-                <input value={form.CIIU ?? ""} onChange={(e) => setField("CIIU", e.target.value)} placeholder="Ej: 4711" inputMode="numeric" />
-                <small>{ciiuHint}</small>
-              </div>
-
-              <div className="field wide">
-                <span>Año de Corte</span>
-                <input type="number" value={form["Año de Corte"]} onChange={(e) => setField("Año de Corte", e.target.value)} />
-              </div>
+              <h1>Sistema de Scoring Financiero</h1>
+              <p>React (Front) + FastAPI (API) · CatBoost + NGBoost + Ordinal</p>
             </div>
           </div>
 
-          <div className="section">
-            <div className="sectionTop">
-              <div className="sectionName">Información contable</div>
-              <div className="sectionHint">En COP. Puedes pegar valores grandes.</div>
-            </div>
-
-            <div className="formGrid">
-              <div className="field">
-                <span>Ingresos operacionales</span>
-                <input type="number" value={form["INGRESOS OPERACIONALES"]} onChange={(e) => setField("INGRESOS OPERACIONALES", e.target.value)} />
-                <small>Ej: {formatMoney(3500000000)}</small>
-              </div>
-
-              <div className="field">
-                <span>Ganancia (pérdida)</span>
-                <input type="number" value={form["GANANCIA (PÉRDIDA)"]} onChange={(e) => setField("GANANCIA (PÉRDIDA)", e.target.value)} />
-                <small>Negativo si hubo pérdida.</small>
-              </div>
-
-              <div className="field">
-                <span>Total activos</span>
-                <input type="number" value={form["TOTAL ACTIVOS"]} onChange={(e) => setField("TOTAL ACTIVOS", e.target.value)} />
-              </div>
-
-              <div className="field">
-                <span>Total pasivos</span>
-                <input type="number" value={form["TOTAL PASIVOS"]} onChange={(e) => setField("TOTAL PASIVOS", e.target.value)} />
-              </div>
-
-              <div className="field wide">
-                <span>Total patrimonio</span>
-                <input type="number" value={form["TOTAL PATRIMONIO"]} onChange={(e) => setField("TOTAL PATRIMONIO", e.target.value)} />
-              </div>
-            </div>
+          <div className="actions">
+            <button className="pill" onClick={() => { setOut(null); setErr(""); setForm(SOLIDEZ_0); }}>
+              <span className="dot bad" /> Solidez 0
+            </button>
+            <button className="pill" onClick={() => { setOut(null); setErr(""); setForm(SOLIDEZ_1); }}>
+              <span className="dot bad" /> Solidez 1
+            </button>
+            <button className="pill" onClick={() => { setOut(null); setErr(""); setForm(SOLIDEZ_2); }}>
+              <span className="dot good" /> Solidez 2
+            </button>
+            <button className="pill" onClick={() => { setOut(null); setErr(""); setForm(SOLIDEZ_3); }}>
+              <span className="dot good" /> Solidez 3
+            </button>
           </div>
-
-          <button className="cta" onClick={onPredict} disabled={loading}>
-            {loading ? "Calculando..." : "Evaluar situación financiera"}
-          </button>
-
-          {err && <div className="error">{err}</div>}
         </div>
 
-        {/* RESULTS */}
-        <div className="card">
-          <div className="cardHeader">
-            <div>
-              <div className="cardTitle">Resultados e interpretación</div>
-              <div className="cardSub">
-                Resumen ejecutivo + tabla interpretativa para lectura rápida.
+        <div className="grid">
+          {/* FORM */}
+          <div className="card">
+            <div className="cardHeader">
+              <div>
+                <div className="cardTitle">Datos de entrada</div>
+                <div className="cardSub">
+                  Selecciona contexto (categorías del dataset) y completa valores contables.
+                </div>
+              </div>
+              <div className="badgeMini">Validado por categorías</div>
+            </div>
+
+            <div className="section">
+              <div className="sectionTop">
+                <div className="sectionName">Contexto</div>
+                <div className="sectionHint">Categorías usadas en entrenamiento</div>
+              </div>
+
+              <div className="formGrid">
+                <div className="field">
+                  <span>SUPERVISOR</span>
+                  <select value={form.SUPERVISOR || ""} onChange={(e) => setField("SUPERVISOR", e.target.value)}>
+                    <option value="" disabled>Selecciona supervisor...</option>
+                    {OPTIONS.supervisores.map(v => <option key={v} value={v}>{v}</option>)}
+                  </select>
+                </div>
+
+                <div className="field">
+                  <span>REGIÓN</span>
+                  <select value={form["REGIÓN"] || ""} onChange={(e) => setField("REGIÓN", e.target.value)}>
+                    <option value="" disabled>Selecciona región...</option>
+                    {OPTIONS.regiones.map(v => <option key={v} value={v}>{v}</option>)}
+                  </select>
+                </div>
+
+                <div className="field">
+                  <span>DEPARTAMENTO</span>
+                  <select value={form["DEPARTAMENTO DOMICILIO"] || ""} onChange={(e) => setField("DEPARTAMENTO DOMICILIO", e.target.value)}>
+                    <option value="" disabled>Selecciona departamento...</option>
+                    {OPTIONS.departamentos.map(v => <option key={v} value={v}>{v}</option>)}
+                  </select>
+                </div>
+
+                <div className="field">
+                  <span>CIUDAD</span>
+                  <select value={form["CIUDAD DOMICILIO"] || ""} onChange={(e) => setField("CIUDAD DOMICILIO", e.target.value)}>
+                    <option value="" disabled>Selecciona ciudad...</option>
+                    {(cities.length ? cities : [form["CIUDAD DOMICILIO"]]).filter(Boolean).map(v => (
+                      <option key={v} value={v}>{v}</option>
+                    ))}
+                  </select>
+                  <small>La lista cambia según el departamento.</small>
+                </div>
+
+                <div className="field">
+                  <span>MACROSECTOR</span>
+                  <select value={form.MACROSECTOR || ""} onChange={(e) => setField("MACROSECTOR", e.target.value)}>
+                    <option value="" disabled>Selecciona macrosector...</option>
+                    {OPTIONS.macrosector.map(v => <option key={v} value={v}>{v}</option>)}
+                  </select>
+                </div>
+
+                <div className="field wide">
+                  <span>CIIU</span>
+                  <input value={form.CIIU ?? ""} onChange={(e) => setField("CIIU", e.target.value)} placeholder="Ej: 4711" inputMode="numeric" />
+                  <small>{ciiuHint}</small>
+                </div>
+
+                <div className="field wide">
+                  <span>Año de Corte</span>
+                  <input type="number" value={form["Año de Corte"]} onChange={(e) => setField("Año de Corte", e.target.value)} />
+                </div>
               </div>
             </div>
-            <div className="badgeMini">API /predict</div>
+
+            <div className="section">
+              <div className="sectionTop">
+                <div className="sectionName">Información contable</div>
+                <div className="sectionHint">En COP. Puedes pegar valores grandes.</div>
+              </div>
+
+              <div className="formGrid">
+                <div className="field">
+                  <span>Ingresos operacionales</span>
+                  <input type="number" value={form["INGRESOS OPERACIONALES"]} onChange={(e) => setField("INGRESOS OPERACIONALES", e.target.value)} />
+                  <small>Ej: {formatMoney(3500000000)}</small>
+                </div>
+
+                <div className="field">
+                  <span>Ganancia (pérdida)</span>
+                  <input type="number" value={form["GANANCIA (PÉRDIDA)"]} onChange={(e) => setField("GANANCIA (PÉRDIDA)", e.target.value)} />
+                  <small>Negativo si hubo pérdida.</small>
+                </div>
+
+                <div className="field">
+                  <span>Total activos</span>
+                  <input type="number" value={form["TOTAL ACTIVOS"]} onChange={(e) => setField("TOTAL ACTIVOS", e.target.value)} />
+                </div>
+
+                <div className="field">
+                  <span>Total pasivos</span>
+                  <input type="number" value={form["TOTAL PASIVOS"]} onChange={(e) => setField("TOTAL PASIVOS", e.target.value)} />
+                </div>
+
+                <div className="field wide">
+                  <span>Total patrimonio</span>
+                  <input type="number" value={form["TOTAL PATRIMONIO"]} onChange={(e) => setField("TOTAL PATRIMONIO", e.target.value)} />
+                </div>
+              </div>
+            </div>
+
+            <button className="cta" onClick={onPredict} disabled={loading}>
+              {loading ? "Calculando..." : "Evaluar situación financiera"}
+            </button>
+
+            {err && <div className="error">{err}</div>}
           </div>
 
-          {!out ? (
-            <div className="empty">Ejecuta una predicción para ver resultados.</div>
-          ) : (
-            <div className="resultsWrap">
-              {/* Resumen ejecutivo */}
-              {executive && (
-                <div className="section" style={{ ...toneToRowStyle(executive.tone), borderRadius: 18 }}>
-                  <div className="sectionTop" style={{ marginBottom: 8 }}>
-                    <div className="sectionName">Resumen ejecutivo</div>
-                    <div className="badgeMini">
-                      {riskMeta.label} riesgo · {perfMeta.label} desempeño · {solMeta.label} solidez
+          {/* RESULTS */}
+          <div className="card">
+            <div className="cardHeader">
+              <div>
+                <div className="cardTitle">Resultados e interpretación</div>
+                <div className="cardSub">
+                  Resumen ejecutivo + tabla interpretativa para lectura rápida.
+                </div>
+              </div>
+              <div className="badgeMini">API /predict</div>
+            </div>
+
+            {!out ? (
+              <div className="empty">Ejecuta una predicción para ver resultados.</div>
+            ) : (
+              <div className="resultsWrap">
+                {executive && (
+                  <div className="section" style={{ ...toneToRowStyle(executive.tone), borderRadius: 18 }}>
+                    <div className="sectionTop" style={{ marginBottom: 8 }}>
+                      <div className="sectionName">Resumen ejecutivo</div>
+                      <div className="badgeMini">
+                        {riskMeta.label} riesgo · {perfMeta.label} desempeño · {solMeta.label} solidez
+                      </div>
+                    </div>
+                    <div className="miniNote" style={{ fontSize: 13.5 }}>
+                      <b>{executive.headline}</b><br />
+                      {executive.recText}<br />
+                      <b>{executive.action}</b>
                     </div>
                   </div>
-                  <div className="miniNote" style={{ fontSize: 13.5 }}>
-                    <b>{executive.headline}</b><br />
-                    {executive.recText}<br />
-                    <b>{executive.action}</b>
+                )}
+
+                <div className="kpiGrid">
+                  <div className="kpi">
+                    <div className="kpiLabel">Probabilidad de riesgo</div>
+                    <div className="kpiVal">{out.proba_riesgo.toFixed(3)}</div>
+
+                    <div className={`pillStatus ${riskMeta?.tone || "warn"}`}>
+                      <span className={`dot ${toneToDotClass(riskMeta?.tone)}`} style={{ width: 10, height: 10 }} />
+                      {riskMeta?.label || "N/A"}
+                    </div>
+
+                    <div className="progress" title="0 = bajo, 1 = alto">
+                      <div className="bar" style={{ width: riskBarWidth }} />
+                    </div>
+                    <div className="miniNote" style={{ marginTop: 8 }}>
+                      {riskMeta?.desc}
+                    </div>
+                  </div>
+
+                  <div className="kpi">
+                    <div className="kpiLabel">Índice de desempeño</div>
+                    <div className="kpiVal">{out.indice_desempeno.toFixed(5)}</div>
+
+                    <div className={`pillStatus ${perfMeta?.tone || "warn"}`}>
+                      {perfMeta?.label || "N/A"}
+                    </div>
+                    <div className="miniNote" style={{ marginTop: 8 }}>
+                      {perfMeta?.desc}
+                    </div>
+                  </div>
+
+                  <div className="kpi">
+                    <div className="kpiLabel">Nivel de solidez (0–3)</div>
+                    <div className="kpiVal">{out.nivel_solidez}</div>
+
+                    <div className={`pillStatus ${solMeta?.tone || "warn"}`}>
+                      {solMeta?.label || "N/A"}
+                    </div>
+                    <div className="miniNote" style={{ marginTop: 8 }}>
+                      {solMeta?.desc}
+                    </div>
                   </div>
                 </div>
-              )}
 
-              {/* KPIs */}
-              <div className="kpiGrid">
-                <div className="kpi">
-                  <div className="kpiLabel">Probabilidad de riesgo</div>
-                  <div className="kpiVal">{out.proba_riesgo.toFixed(3)}</div>
-
-                  <div className={`pillStatus ${riskMeta?.tone || "warn"}`}>
-                    <span className={`dot ${toneToDotClass(riskMeta?.tone)}`} style={{ width: 10, height: 10 }} />
-                    {riskMeta?.label || "N/A"}
-                  </div>
-
-                  <div className="progress" title="0 = bajo, 1 = alto">
-                    <div className="bar" style={{ width: riskBarWidth }} />
-                  </div>
-                  <div className="miniNote" style={{ marginTop: 8 }}>
-                    {riskMeta?.desc}
-                  </div>
-                </div>
-
-                <div className="kpi">
-                  <div className="kpiLabel">Índice de desempeño</div>
-                  <div className="kpiVal">{out.indice_desempeno.toFixed(5)}</div>
-
-                  <div className={`pillStatus ${perfMeta?.tone || "warn"}`}>
-                    {perfMeta?.label || "N/A"}
-                  </div>
-                  <div className="miniNote" style={{ marginTop: 8 }}>
-                    {perfMeta?.desc}
-                  </div>
-                </div>
-
-                <div className="kpi">
-                  <div className="kpiLabel">Nivel de solidez (0–3)</div>
-                  <div className="kpiVal">{out.nivel_solidez}</div>
-
-                  <div className={`pillStatus ${solMeta?.tone || "warn"}`}>
-                    {solMeta?.label || "N/A"}
-                  </div>
-                  <div className="miniNote" style={{ marginTop: 8 }}>
-                    {solMeta?.desc}
-                  </div>
-                </div>
-              </div>
-
-              <div className="divider" />
-
-              {/* Tabla objetivos */}
-              <table className="table">
-                <thead>
-                  <tr>
-                    <th>Objetivo</th>
-                    <th>Valor</th>
-                    <th>Interpretación</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr style={toneToRowStyle(riskMeta.tone)}>
-                    <td><b>Riesgo financiero</b> (CatBoost)</td>
-                    <td>{out.proba_riesgo.toFixed(3)}</td>
-                    <td className="miniNote">
-                      Probabilidad entre 0 y 1. Cerca de 0 = bajo riesgo, cerca de 1 = alto riesgo.
-                      Umbrales demo: <b>&lt;0.25</b> bajo, <b>0.25–0.50</b> medio, <b>&gt;=0.50</b> alto.
-                    </td>
-                  </tr>
-
-                  <tr style={toneToRowStyle(perfMeta.tone)}>
-                    <td><b>Índice de desempeño</b> (NGBoost)</td>
-                    <td>{out.indice_desempeno.toFixed(5)}</td>
-                    <td className="miniNote">
-                      Índice continuo (no es porcentaje). Cerca de <b>0</b> suele indicar estabilidad.
-                      Más negativo sugiere desempeño más débil.
-                    </td>
-                  </tr>
-
-                  <tr style={toneToRowStyle(solMeta.tone)}>
-                    <td><b>Solidez</b> (Ordinal)</td>
-                    <td>{out.nivel_solidez}</td>
-                    <td className="miniNote">
-                      Escala ordinal: <b>0</b> muy baja, <b>1</b> baja, <b>2</b> media, <b>3</b> alta.
-                      Resume estructura financiera (apalancamiento + rentabilidad + balance).
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-
-              <div className="divider" />
-
-              {/* Ratios PRO */}
-              <div>
-                <div className="cardTitle" style={{ marginBottom: 8 }}>
-                  Ratios 
-                </div>
+                <div className="divider" />
 
                 <table className="table">
                   <thead>
                     <tr>
-                      <th>Ratio</th>
+                      <th>Objetivo</th>
                       <th>Valor</th>
-                      <th>Qué significa</th>
-                      <th>Lectura rápida</th>
+                      <th>Interpretación</th>
                     </tr>
                   </thead>
                   <tbody>
-                    {ratioInterpretation(out.ratios).map((r) => (
-                      <tr key={r.key} style={toneToRowStyle(r.lectura.tone)}>
-                        <td><b>{r.nombre}</b></td>
-                        <td>{r.formato(r.valor)}</td>
-                        <td className="miniNote">{r.queEs}</td>
-                        <td className="miniNote"><b>{r.lectura.text}</b></td>
-                      </tr>
-                    ))}
+                    <tr style={toneToRowStyle(riskMeta.tone)}>
+                      <td><b>Riesgo financiero</b> (CatBoost)</td>
+                      <td>{out.proba_riesgo.toFixed(3)}</td>
+                      <td className="miniNote">
+                        Probabilidad entre 0 y 1. Cerca de 0 = bajo riesgo, cerca de 1 = alto riesgo.
+                        Umbrales demo: <b>&lt;0.25</b> bajo, <b>0.25–0.50</b> medio, <b>&gt;=0.50</b> alto.
+                      </td>
+                    </tr>
+
+                    <tr style={toneToRowStyle(perfMeta.tone)}>
+                      <td><b>Índice de desempeño</b> (NGBoost)</td>
+                      <td>{out.indice_desempeno.toFixed(5)}</td>
+                      <td className="miniNote">
+                        Índice continuo (no es porcentaje). Cerca de <b>0</b> suele indicar estabilidad.
+                        Más negativo sugiere desempeño más débil.
+                      </td>
+                    </tr>
+
+                    <tr style={toneToRowStyle(solMeta.tone)}>
+                      <td><b>Solidez</b> (Ordinal)</td>
+                      <td>{out.nivel_solidez}</td>
+                      <td className="miniNote">
+                        Escala ordinal: <b>0</b> muy baja, <b>1</b> baja, <b>2</b> media, <b>3</b> alta.
+                        Resume estructura financiera (apalancamiento + rentabilidad + balance).
+                      </td>
+                    </tr>
                   </tbody>
                 </table>
 
-                <div className="miniNote" style={{ marginTop: 10 }}>
-                  Estos ratios se calculan automáticamente a partir de tus datos contables y ayudan a entender
-                  por qué el modelo estima <b>riesgo</b>, <b>desempeño</b> y <b>solidez</b>.
+                <div className="divider" />
+
+                <div>
+                  <div className="cardTitle" style={{ marginBottom: 8 }}>
+                    Ratios
+                  </div>
+
+                  <table className="table">
+                    <thead>
+                      <tr>
+                        <th>Ratio</th>
+                        <th>Valor</th>
+                        <th>Qué significa</th>
+                        <th>Lectura rápida</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {ratioInterpretation(out.ratios).map((r) => (
+                        <tr key={r.key} style={toneToRowStyle(r.lectura.tone)}>
+                          <td><b>{r.nombre}</b></td>
+                          <td>{r.formato(r.valor)}</td>
+                          <td className="miniNote">{r.queEs}</td>
+                          <td className="miniNote"><b>{r.lectura.text}</b></td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+
+                  <div className="miniNote" style={{ marginTop: 10 }}>
+                    Estos ratios se calculan automáticamente a partir de tus datos contables y ayudan a entender
+                    por qué el modelo estima <b>riesgo</b>, <b>desempeño</b> y <b>solidez</b>.
+                  </div>
                 </div>
               </div>
-            </div>
-          )}
+            )}
+          </div>
         </div>
       </div>
     </div>
